@@ -1,3 +1,4 @@
+
 package(
     default_visibility = ["//visibility:public"],
 )
@@ -442,3 +443,17 @@ tflite_cc_shared_object(
 )
 
 tflite_portable_test_suite()
+
+cc_binary(
+    name = "libtensorflowLite.so",
+    linkopts=[
+        "-shared", 
+        "-Wl,-soname=libtensorflowLite.so",
+    ],
+    linkshared = 1,
+    copts = tflite_copts(),
+    deps = [
+        ":framework",
+        "//tensorflow/lite/kernels:builtin_ops",
+    ],
+)
