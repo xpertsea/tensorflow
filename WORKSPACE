@@ -152,6 +152,6 @@ android_sdk_repository(
 
 android_ndk_repository(
    name="androidndk",
-   path="/opt/android-ndk/android-ndk-r18b",
+   path="/opt/android-ndk",
    api_level=18
 )
