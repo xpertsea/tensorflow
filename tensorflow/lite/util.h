@@ -24,6 +24,11 @@ limitations under the License.
 #include <vector>
 #include "tensorflow/lite/c/c_api_internal.h"
 
+// Workaround for compatibility with Android API level 21: https://github.com/tensorflow/tensorflow/issues/31114
+extern "C" {
+    int __register_atfork(void (*prepare) (void), void (*parent) (void), void (*child) (void), void *__dso_handle);
+}
+
 namespace tflite {
 
 // The prefix of Flex op custom code.

@@ -15,6 +15,15 @@ limitations under the License.
 #include "tensorflow/lite/util.h"
 
 #include <cstring>
+#include <cassert>
+
+// Workaround for compatibility with Android API level 21: https://github.com/tensorflow/tensorflow/issues/31114
+extern "C" {
+    int __register_atfork(void (*prepare) (void), void (*parent) (void), void (*child) (void), void *__dso_handle) {
+        assert(0 && "Using dummy __register_atfork(). This is dangerous, so asserting.");
+        return 0; // Avoid warning
+    }
+}
 
 namespace tflite {
 
